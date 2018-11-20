@@ -53,3 +53,16 @@ CREATE TABLE "auth_cas"(
     "renew" CHAR(1)
 );
 success!
+timestamp: 2018-11-20T13:05:39.485426
+CREATE TABLE "post"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "post_author" CHAR(512),
+    "post_title" CHAR(512),
+    "post_description" TEXT,
+    "post_time" TIMESTAMP,
+    "post_location" CHAR(512),
+    "post_price" CHAR(512),
+    "post_image" CHAR(512),
+    "post_contact" CHAR(512)
+);
+success!
