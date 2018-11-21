@@ -1,3 +1,4 @@
+
 // This is the js for the default/index.html view.
 var app = function() {
 
@@ -18,6 +19,10 @@ var app = function() {
         $.web2py.disableElement($("#add-post"));
         var sent_title = self.vue.form_title; // Makes a copy 
         var sent_description = self.vue.form_description; // 
+        console.log("sent_description");
+        console.log(sent_description);
+        console.log("sent_title");
+        console.log(sent_title);
         $.post(add_post_url,
             // Data we are sending.
             {
@@ -35,7 +40,7 @@ var app = function() {
                 var new_post = {
                     id: data.post_id,
                     post_title: sent_title,
-                    post_description: sent_content
+                    post_description: sent_description
                 };
                 self.vue.post_list.unshift(new_post);
                 // We re-enumerate the array.
