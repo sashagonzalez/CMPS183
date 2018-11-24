@@ -1,6 +1,7 @@
-
 // This is the js for the default/index.html view.
 var app = function() {
+
+    var self = {};
 
     Vue.config.silent = false; // show all warnings
 
@@ -18,16 +19,12 @@ var app = function() {
         // We disable the button, to prevent double submission.
         $.web2py.disableElement($("#add-post"));
         var sent_title = self.vue.form_title; // Makes a copy 
-        var sent_description = self.vue.form_description; // 
-        console.log("sent_description");
-        console.log(sent_description);
-        console.log("sent_title");
-        console.log(sent_title);
+        var sent_content = self.vue.form_content; // 
         $.post(add_post_url,
             // Data we are sending.
             {
                 post_title: self.vue.form_title,
-                post_description: self.vue.form_description
+                post_content: self.vue.form_content
             },
             // What do we do when the post succeeds?
             function (data) {
@@ -35,12 +32,12 @@ var app = function() {
                 $.web2py.enableElement($("#add-post"));
                 // Clears the form.
                 self.vue.form_title = "";
-                self.vue.form_description = "";
+                self.vue.form_content = "";
                 // Adds the post to the list of posts. 
                 var new_post = {
                     id: data.post_id,
                     post_title: sent_title,
-                    post_description: sent_description
+                    post_content: sent_content
                 };
                 self.vue.post_list.unshift(new_post);
                 // We re-enumerate the array.
@@ -76,27 +73,10 @@ var app = function() {
             // Replace it with the appropriate code for thumbs. 
             // // Did I like it? 
             // // If I do e._smile = e.like, then Vue won't see the changes to e._smile . 
-            //Vue.set(e, '_smile', e.like); 
-            //Vue.set(e, '_like', e.like);
-            // Vue.set(e, '_dislike',e.dislike);
-            // Vue.set(e, '_netlikes', -9999);
-            // Vue.set(e, '_edit_post', false);
-            // Vue.set(e,'_show_replies',false);
-            // Vue.set(e,'_reply_list',[]);
-            // Vue.set(e, '_show_add_reply', false);
-
+            // Vue.set(e, '_smile', e.like); 
         });
     };
 
-    self.update_post = function(post_idx){
-        console.log("in update post");
-        var p = self.vue.post_list[post_idx];
-        $.post(update_post_url,{
-            post_id: p.id,
-            post_title: p.post_title,
-            post_content: p.post_content
-        });
-    }
 
     // Complete as needed.
     self.vue = new Vue({
@@ -105,17 +85,11 @@ var app = function() {
         unsafeDelimiters: ['!{', '}'],
         data: {
             form_title: "",
-            form_description: "",
-            post_list: [],
-            //show_add_post: false,
-            //edit_post: false,
-            //edit_post_id: "None",
+            form_content: "",
+            post_list: []
         },
         methods: {
-            //Add post
             add_post: self.add_post,
-            //Update post
-            update_post: self.update_post,
         }
 
     });

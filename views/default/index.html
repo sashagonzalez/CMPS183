@@ -1,55 +1,69 @@
 {{extend 'layout.html'}}
 
-{{block header}}
-<p>Hello World</p>
-<!--
-<div class="jumbotron jumbotron-fluid background" style="background-color: #333; color:white; padding:30px;word-wrap:break-word;">
-  <div class="container center">
-    <h1 class="display-5">/{{=request.application}}/{{=request.controller}}/{{=request.function}}</h1>
-  </div>
-</div>
--->
+{{block head}}
+<script src="{{=URL('static', 'js/vue.js')}}"></script>
+<script>
+    var add_post_url = "{{=URL('api', 'add_post', user_signature=True)}}";
+    var get_post_list_url = "{{=URL('api', 'get_post_list')}}";
+    // Like callbacks.
+    var set_like_url = "{{=URL('api', 'set_like', user_signature=True)}}";
+    var get_likers_url = "{{=URL('api', 'get_likers')}}"
+    // Stars.
+    var set_stars_url = "{{=URL('api', 'set_stars', user_signature=True)}}";
+    var is_logged_in = {{='false' if auth.user is None else 'true'}};
+</script>
 {{end}}
-<!--
-<div class="row">
-  <div class="col-md-12">
-    {{if 'message' in globals():}}
-    <h2>{{=message}}</h2>
-    <p class="lead">{{=T('How did you get here?')}}</p>
-    <ol style="word-wrap:break-word;">
-      <li>{{=T('You are successfully running web2py')}}</li>
-      <li>{{=XML(T('You visited the url %s', A(request.env.path_info,_href=request.env.path_info)))}}</li>
-      <li>{{=XML(T('Which called the function %s located in the file %s',
-        (A(request.function+'()',_href='#'),
-        A('web2py/applications/%(application)s/controllers/%(controller)s.py' % request,
-        _href=URL('admin','default','peek', args=(request.application,'controllers',request.controller+'.py'))))))}}</li>
-      <li>{{=XML(T('The output of the file is a dictionary that was rendered by the view %s',
-        A('web2py/applications/%(application)s/views/%(controller)s/index.html' % request,
-        _href=URL('admin','default','peek',args=(request.application,'views',request.controller,'index.html')))))}}</li>
-      <li>{{=T('You can modify this application and adapt it to your needs')}}</li>
-    </ol>
-    <div class="jumbotron jumbotron-fluid" style="padding:30px;word-wrap:break-word;">
-      <div class="container center">
-        <a class="btn btn-primary" href="{{=URL('admin','default','index')}}">
-          <i class="fa fa-cog"></i>
-          {{=T("admin")}}
-        </a>
-        <a class="btn btn-secondary" href="{{=URL('examples','default','index')}}">{{=T("Online examples")}}</a>
-        <a class="btn btn-secondary" href="http://web2py.com">web2py.com</a>
-        <a class="btn btn-secondary" href="http://web2py.com/book">{{=T('Documentation')}}</a>
-        <a class="btn btn-secondary" href="{{=URL('default','api_get_user_email')}}">{{=T('API Example')}}</a>
-        <a class="btn btn-secondary" href="{{=URL('default','grid/auth_user')}}">{{=T('Grid Example')}}</a>
-        <a class="btn btn-secondary" href="{{=URL('default','wiki')}}">{{=T('Wiki Example')}}</a>
+
+<div class="main_content">
+
+    <div id="vue-div" class="display:none">
+      <!-- Your code goes here.  Remember to call $("#vue-div").show() once you get the data for the first time. -->
+
+      <!-- First, let's add a form to insert blog posts. -->
+      <div id="add_post" style="display:none">
+        <div class="container form_row">
+          <div class="label quarter">
+            Title:
+          </div>
+          <div class="form threequarters">
+            <input v-model="form_title" placeholder="Enter the post title"/>
+          </div>
+        </div>
+        <div class="container form_row">
+          <div class="label quarter">
+            Content:
+          </div>
+          <div class="form threequarters">
+            <textarea v-model="form_content" placeholder="Enter the content of your post"></textarea>
+          </div>
+        </div>
+        <div class="container form_row"><div class="quarter"></div>
+          <div class="threequarters">
+            <div class="submit">
+              <button id="add-post" v-on:click="add_post">Submit</button>
+            </div>
+          </div>
+        </div>
       </div>
+
+      <!-- Message in case there are no posts. -->
+      <div v-if="post_list.length === 0">There are no posts.</div>
+
+      <!-- We display the posts. -->
+      <div id="post_list">
+        <div class="post_div" v-for="post in post_list">
+          <div class="post_title">${post.post_title}</div>
+          <div class="post_content">${post.post_content}</div>
+          <div class="attributes">
+            
+            <!-- Code for Thumbs. -->
+
+          </div>
+        </div>
+      </div>
+
     </div>
-    {{elif 'content' in globals():}}
-    {{=content}}
-    {{else:}}
-    {{=BEAUTIFY(response._vars)}}
-    {{pass}}
-  </div>
+
 </div>
--->
 
-
-
+<script src="{{=URL('static', 'js/default_index.js')}}"></script>
