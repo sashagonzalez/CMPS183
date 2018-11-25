@@ -81,3 +81,112 @@ CREATE TABLE "thumb"(
     "thumb_state" CHAR(512)
 );
 success!
+timestamp: 2018-11-24T20:08:16.803680
+ALTER TABLE "auth_user" ADD "username" CHAR(128);
+success!
+timestamp: 2018-11-24T20:08:16.836747
+ALTER TABLE "post" ADD "post_username" CHAR(512);
+timestamp: 2018-11-24T20:08:16.844601
+ALTER TABLE "post" ADD "post_description" TEXT;
+timestamp: 2018-11-24T20:08:16.851628
+ALTER TABLE "post" ADD "post_price" CHAR(512);
+timestamp: 2018-11-24T20:08:16.860625
+ALTER TABLE "post" ADD "post_location" CHAR(512);
+timestamp: 2018-11-24T20:08:16.868784
+ALTER TABLE "post" ADD "post_category" CHAR(512);
+timestamp: 2018-11-24T20:08:16.874656
+ALTER TABLE "post" ADD "post_image" CHAR(512);
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+timestamp: 2018-11-24T20:22:09.566836
+ALTER TABLE "post" ADD "post_city" CHAR(512);
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!

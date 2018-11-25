@@ -22,17 +22,18 @@ def get_user_email():
 def get_current_time():
     return datetime.datetime.utcnow()
 
+def get_username():
+    return None if auth.user is None else auth.user.username
+
 db.define_table('post',
+                Field('post_username', default=get_username()),
+                Field('post_city'),
+                Field('post_price'),
+                Field('post_image','upload', default=None),
+                Field('post_category'),
                 Field('post_author', default=get_user_email()),
                 Field('post_title'),
-                Field('post_content', 'text'),
+                Field('post_description', 'text'),
                 Field('post_time', 'datetime', default=get_current_time()),
                 )
 
-
-# Thumbs
-db.define_table('thumb',
-                Field('user_email'), # The user who thumbed, easier to just write the email here.
-                Field('post_id', 'reference post'), # The thumbed post
-                Field('thumb_state'), # This can be 'u' for up or 'd' for down, or None for... None.
-                )

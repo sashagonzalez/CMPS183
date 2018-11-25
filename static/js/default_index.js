@@ -19,12 +19,16 @@ var app = function() {
         // We disable the button, to prevent double submission.
         $.web2py.disableElement($("#add-post"));
         var sent_title = self.vue.form_title; // Makes a copy 
-        var sent_content = self.vue.form_content; // 
+        var sent_description = self.vue.form_description; // 
+        var sent_price = self.vue.form_price;
+        var sent_city = self.vue.form_city;
         $.post(add_post_url,
             // Data we are sending.
             {
                 post_title: self.vue.form_title,
-                post_content: self.vue.form_content
+                post_description: self.vue.form_description,
+                post_price: self.vue.form_price,
+                post_city: self.vue.form_city,
             },
             // What do we do when the post succeeds?
             function (data) {
@@ -32,12 +36,16 @@ var app = function() {
                 $.web2py.enableElement($("#add-post"));
                 // Clears the form.
                 self.vue.form_title = "";
-                self.vue.form_content = "";
+                self.vue.form_description = "";
+                self.vue.form_price = "";
+                self.vue.form_city = "";
                 // Adds the post to the list of posts. 
                 var new_post = {
                     id: data.post_id,
                     post_title: sent_title,
-                    post_content: sent_content
+                    post_description: sent_content,
+                    post_price: sent_price,
+                    post_city: sent_city
                 };
                 self.vue.post_list.unshift(new_post);
                 // We re-enumerate the array.
@@ -54,13 +62,13 @@ var app = function() {
                 self.vue.post_list = data.post_list;
                 // Post-processing.
                 self.process_posts();
-                console.log("I got my list");
             }
         );
         console.log("I fired the get");
     };
 
     self.process_posts = function() {
+        console.log("in process_post");
         // This function is used to post-process posts, after the list has been modified
         // or after we have gotten new posts. 
         // We add the _idx attribute to the posts. 
@@ -85,7 +93,9 @@ var app = function() {
         unsafeDelimiters: ['!{', '}'],
         data: {
             form_title: "",
-            form_content: "",
+            form_description: "",
+            form_price:"",
+            form_city:"",
             post_list: []
         },
         methods: {

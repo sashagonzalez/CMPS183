@@ -65,8 +65,14 @@ auth = Auth(db, host_names=myconf.get('host.names'))
 service = Service()
 plugins = PluginManager()
 
+# extra fields for auth.user
+auth.settings.extra_fields['auth_user']= [
+  Field('first_name'),
+  Field('last_name'),
+  Field('email')]
+
 # create all tables needed by auth if not custom tables
-auth.define_tables(username=False,migrate=True, signature=False)
+auth.define_tables(username=True,migrate=True, signature=False)
 
 # configure email
 mail = auth.settings.mailer

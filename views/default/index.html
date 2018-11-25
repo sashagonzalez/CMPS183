@@ -25,7 +25,9 @@
         <div id="post_list">
           <div class="post_div" v-for="post in post_list">
             <div class="post_title">${post.post_title}</div>
-            <div class="post_content">${post.post_content}</div>
+            <div class="post_description">${post.post_description}</div>
+            <div class="post_price">${post.post_price}</div>
+            <div class="post_city">${post.post_city}</div>
             <div class="attributes">
             </div>
           </div>
@@ -47,12 +49,31 @@
           </div>
           <div class="container form_row">
             <div class="label quarter">
-              Content:
+              Description:
             </div>
             <div class="form threequarters">
-              <textarea v-model="form_content" placeholder="Enter the content of your post"></textarea>
+              <textarea v-model="form_description" placeholder="Enter the description"></textarea>
             </div>
           </div>
+          
+          <div class="container form_row">
+            <div class="label quarter">
+              Price:
+            </div>
+            <div class="form threequarters">
+              <input v-model="form_price" placeholder="Enter the price"/>
+            </div>
+          </div>
+
+          <div class="container form_row">
+            <div class="label quarter">
+              City:
+            </div>
+            <div class="form threequarters">
+              <input v-model="form_city" placeholder="Enter the city"/>
+            </div>
+          </div>
+          
           <div class="container form_row"><div class="quarter"></div>
             <div class="threequarters">
               <div class="submit">
@@ -64,7 +85,7 @@
 
         <div class="redirect_page" style="background-color:gold">
           <p>This is the redirect page</p>
-          
+
 
 
         </div>
