@@ -8,6 +8,7 @@ def add_post():
         post_description=request.vars.post_description,
         post_price= request.vars.post_price,
         post_city=request.vars.post_city,
+        post_image=request.vars.post_image,
     )
     # We return the id of the new post, so we can insert it along all the others.
     return response.json(dict(post_id=post_id))

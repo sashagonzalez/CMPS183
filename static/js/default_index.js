@@ -22,6 +22,7 @@ var app = function() {
         var sent_description = self.vue.form_description; // 
         var sent_price = self.vue.form_price;
         var sent_city = self.vue.form_city;
+        var sent_image = self.vue.form_image;
         $.post(add_post_url,
             // Data we are sending.
             {
@@ -39,13 +40,15 @@ var app = function() {
                 self.vue.form_description = "";
                 self.vue.form_price = "";
                 self.vue.form_city = "";
+                self.vue.form_image="";
                 // Adds the post to the list of posts. 
                 var new_post = {
                     id: data.post_id,
                     post_title: sent_title,
-                    post_description: sent_content,
+                    post_description: sent_description,
                     post_price: sent_price,
-                    post_city: sent_city
+                    post_city: sent_city,
+                    post_image: sent_image
                 };
                 self.vue.post_list.unshift(new_post);
                 // We re-enumerate the array.
@@ -96,6 +99,7 @@ var app = function() {
             form_description: "",
             form_price:"",
             form_city:"",
+            form_image:"",
             post_list: []
         },
         methods: {
