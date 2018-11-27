@@ -88,6 +88,10 @@ var app = function() {
         });
     };
 
+    self.open_post = function(post_idx){
+        console.log("clicked");
+    };
+
 
     // Complete as needed.
     self.vue = new Vue({
@@ -101,10 +105,10 @@ var app = function() {
             form_city:"",
             form_image:"",
             post_list: [],
-            _add_post: false
         },
         methods: {
             add_post: self.add_post,
+            open_post: self.open_post,
         }
 
     });

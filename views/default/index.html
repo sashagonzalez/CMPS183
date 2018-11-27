@@ -12,95 +12,28 @@
 {{end}}
 
 <div class="main_content">
-    <div id="vue-div" class="display:none">
-
-      <!--This is the Main Page HTML code 
-        ####################################################################-->
-      <div class="main_page" style="background-color: red">
-        <p>This is the main page</p>
-        <!-- Message in case there are no posts. -->
-        <div v-if="post_list.length === 0">There are no posts.</div>
-
+  <div id="vue-div" class="display:none">
+    <!--This is the Main Page HTML code 
+      ####################################################################-->
+    <div class="main_page" style="background-color: red">
+      <p>This is the main page</p>
+      <!-- Message in case there are no posts. -->
+      <div v-if="post_list.length === 0">There are no posts.</div>
         <!-- We display the posts. -->
         <div id="post_list">
           <div class="post_div" v-for="post in post_list">
-            <div class="post_title">${post.post_title}</div>
-            <div class="post_description">${post.post_description}</div>
-            <div class="post_price">${post.post_price}</div>
-            <div class="post_city">${post.post_city}</div>
-            <div class="attributes">
+            <div v-on:click="open_post(post._idx)">
+              <div class="post_title">${post.post_title}</div>
+              <div class="post_description">${post.post_description}</div>
+              <div class="post_price">${post.post_price}</div>
+              <div class="post_city">${post.post_city}</div>
+              <div class="attributes"></div>
             </div>
           </div>
         </div>
       </div>
-
-      <!--- This is the user's page 
-        ####################################################################-->
-      <div class="user_page" style="background-color: green">
-        <p>This is the user page</p>
-        <div id="add_post" style="display:none">
-          <div class="container form_row">
-            <div class="label quarter">
-              Title:
-            </div>
-            <div class="form threequarters">
-              <input v-model="form_title" placeholder="Enter the post title"/>
-            </div>
-          </div>
-          <div class="container form_row">
-            <div class="label quarter">
-              Description:
-            </div>
-            <div class="form threequarters">
-              <textarea v-model="form_description" placeholder="Enter the description"></textarea>
-            </div>
-          </div>
-          
-          <div class="container form_row">
-            <div class="label quarter">
-              Price:
-            </div>
-            <div class="form threequarters">
-              <input v-model="form_price" placeholder="Enter the price"/>
-            </div>
-          </div>
-
-          <div class="container form_row">
-            <div class="label quarter">
-              City:
-            </div>
-            <div class="form threequarters">
-              <input v-model="form_city" placeholder="Enter the city"/>
-            </div>
-          </div>
-
-          <div class="container form_row">
-            <div class="label quarter">
-              Image:
-            </div>
-            <div class="form threequarters">
-              <input type="file" v-model="form_image" placeholder="Pick an image"/>
-            </div>
-          </div>
-          
-          <div class="container form_row"><div class="quarter"></div>
-            <div class="threequarters">
-              <div class="submit">
-                <button id="add-post" v-on:click="add_post">Submit</button>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="redirect_page" style="background-color:gold">
-          <p>This is the redirect page</p>
-
-
-
-        </div>
-      </div>
-      
-    </div>
+    </div>  
+  </div>
 </div>
 
 <script src="{{=URL('static', 'js/default_index.js')}}"></script>

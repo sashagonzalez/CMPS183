@@ -13,6 +13,10 @@ def index():
     # We just want to expand the template.
     return dict()
 
+@auth.requires_login()
+def userpage():
+    return dict()
+
 
 def user():
     """
