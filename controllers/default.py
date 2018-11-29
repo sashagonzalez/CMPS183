@@ -7,7 +7,7 @@
 # - user is required for authentication and authorization
 # - download is for downloading files uploaded in the db (does streaming)
 # -------------------------------------------------------------------------
-
+post_to_view=-1
 
 def index():
     # We just want to expand the template.
@@ -16,6 +16,14 @@ def index():
 @auth.requires_login()
 def userpage():
     return dict()
+
+@auth.requires_login()
+def postpage():
+    post_id=request.args(0)
+    print("************************",post_id)
+    return dict()
+
+
 
 
 def user():

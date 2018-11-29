@@ -22,11 +22,12 @@
         <!-- We display the posts. -->
         <div id="post_list">
           <div class="post_div" v-for="post in post_list">
-            <div v-on:click="open_post(post._idx)">
+            <div v-on:click=window.location="{{=URL('default','postpage',args=['10'])}}";>
               <div class="post_title">${post.post_title}</div>
               <div class="post_description">${post.post_description}</div>
               <div class="post_price">${post.post_price}</div>
               <div class="post_city">${post.post_city}</div>
+              <img width="200" height="200" v-bind:src="post.post_image"/>
               <div class="attributes"></div>
             </div>
           </div>

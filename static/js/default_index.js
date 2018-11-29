@@ -60,6 +60,7 @@ var app = function() {
     self.get_posts = function() {
         $.getJSON(get_post_list_url,
             function(data) {
+                console.log(data.post_list);
                 // I am assuming here that the server gives me a nice list
                 // of posts, all ready for display.
                 self.vue.post_list = data.post_list;
@@ -88,6 +89,14 @@ var app = function() {
         });
     };
 
+    self.open_post = function(idx){
+        console.log("clicked");
+        window.location="{{=URL('default','postpage')}}";
+        //$.get(redirect_post_url,idx)
+
+        //ajax("{{=URL('default','postpage')}}");
+    }
+
 
     // Complete as needed.
     self.vue = new Vue({
@@ -105,6 +114,7 @@ var app = function() {
         },
         methods: {
             add_post: self.add_post,
+            open_post: self.open_post,
         }
 
     });

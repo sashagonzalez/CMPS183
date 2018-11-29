@@ -58,7 +58,7 @@
                         Image:
                     </div>
                     <div class="form threequarters">
-                        <input type="file" v-model="form_image" placeholder="Pick an image"/>
+                        <input id="file_input" type="file" v-on:change="upload_file" placeholder="Pick an image" accept="image/jpeg"/>
                     </div>
                 </div>
                 

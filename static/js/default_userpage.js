@@ -30,6 +30,7 @@ var app = function() {
                 post_description: self.vue.form_description,
                 post_price: self.vue.form_price,
                 post_city: self.vue.form_city,
+                post_image: self.vue.form_image
             },
             // What do we do when the post succeeds?
             function (data) {
@@ -88,6 +89,19 @@ var app = function() {
         });
     };
 
+    self.upload_file = function(event){
+        console.log("upload_file");
+        var input=event.target;
+        var file = input.files[0];
+        if (file){
+            var reader = new FileReader();
+            reader.addEventListener("load",function(){
+                self.vue.form_image = reader.result;
+            }, false);
+            reader.readAsDataURL(file);
+        }
+    }
+
     self.open_post = function(post_idx){
         console.log("clicked");
     };
@@ -109,6 +123,7 @@ var app = function() {
         methods: {
             add_post: self.add_post,
             open_post: self.open_post,
+            upload_file: self.upload_file,
         }
 
     });
